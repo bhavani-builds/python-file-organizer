@@ -1,37 +1,7 @@
 from pathlib import Path
 import shutil
 
-
-FILE_CATEGORIES = {
-    "Images": {
-        ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".webp"
-    },
-    "Documents": {
-        ".pdf", ".doc", ".docx", ".txt", ".rtf", ".odt"
-    },
-    "Spreadsheets": {
-        ".xls", ".xlsx", ".csv"
-    },
-    "Presentations": {
-        ".ppt", ".pptx"
-    },
-    "Videos": {
-        ".mp4", ".mkv", ".avi", ".mov", ".wmv", ".flv"
-    },
-    "Music": {
-        ".mp3", ".wav", ".aac", ".flac", ".ogg"
-    },
-    "Archives": {
-        ".zip", ".rar", ".7z", ".tar", ".gz"
-    },
-    "Python": {
-        ".py"
-    },
-    "Code": {
-        ".c", ".cpp", ".java", ".js", ".html", ".css",
-        ".json", ".xml", ".sql"
-    }
-}
+from config import FILE_CATEGORIES
 
 
 def get_category(file_path):
@@ -92,7 +62,10 @@ def organize_directory(directory):
         destination = category_folder / file_path.name
         destination = get_unique_path(destination)
 
-        shutil.move(str(file_path), str(destination))
+        shutil.move(
+            str(file_path),
+            str(destination)
+        )
 
         moved_files.append({
             "file": file_path.name,
